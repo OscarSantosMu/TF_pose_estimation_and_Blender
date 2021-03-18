@@ -44,6 +44,16 @@ if __name__ == '__main__':
     ret_val, image = cam.read()
     logger.info('cam image=%dx%d' % (image.shape[1], image.shape[0]))
 
+    frame_width = int(cam.get(3)) 
+    frame_height = int(cam.get(4)) 
+        
+    # Below VideoWriter object will create 
+    # a frame of above defined The output  
+    # is stored in 'filename.avi' file. 
+    result = cv2.VideoWriter('filename.avi',  
+                            cv2.VideoWriter_fourcc(*'MJPG'), 
+                            10, (frame_width, frame_height))
+
     while True:
         ret_val, image = cam.read()
 
@@ -58,10 +68,12 @@ if __name__ == '__main__':
                     "FPS: %f" % (1.0 / (time.time() - fps_time)),
                     (10, 10),  cv2.FONT_HERSHEY_SIMPLEX, 0.5,
                     (0, 255, 0), 2)
+        result.write(image)
         cv2.imshow('tf-pose-estimation result', image)
         fps_time = time.time()
         if cv2.waitKey(1) == 27:
             break
         logger.debug('finished+')
 
+    result.release() 
     cv2.destroyAllWindows()
