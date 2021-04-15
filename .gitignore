@@ -121,3 +121,6 @@ src/pafprocess/pafprocess_wrap.cxx
 
 # video
 filename.avi
+
+# vscode
+.vscode/
