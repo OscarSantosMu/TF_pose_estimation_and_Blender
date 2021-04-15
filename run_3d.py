@@ -8,6 +8,8 @@ import cv2
 import numpy as np
 from tf_pose.estimator import TfPoseEstimator
 from tf_pose.networks import get_graph_path, model_wh
+from lifting.utils.prob_model import Prob3dPose
+from lifting.utils import plot_pose
 
 logger = logging.getLogger('TfPoseEstimatorRun')
 logger.handlers.clear()
@@ -21,7 +23,7 @@ logger.addHandler(ch)
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='tf-pose-estimation run')
-    parser.add_argument('--image', type=str, default='./images/p2.jpg')
+    parser.add_argument('--image', type=str, default='./images/golf.jpg')
     parser.add_argument('--model', type=str, default='cmu',
                         help='cmu / mobilenet_thin / mobilenet_v2_large / mobilenet_v2_small')
     parser.add_argument('--resize', type=str, default='0x0',
@@ -90,3 +92,43 @@ if __name__ == '__main__':
         logger.warning('matplitlib error, %s' % e)
         cv2.imshow('result', image)
         cv2.waitKey()
+
+    logger.info('3d lifting initialization')
+    poseLifting = Prob3dPose('LiftingfromtheDeeprelease/data/saved_sessions/prob_model/prob_model_params.mat')
+
+    image_h, image_w = image.shape[:2]
+    standard_w = 640
+    standard_h = 480
+
+    pose_2d_mpiis = []
+    visibilities = []
+    for human in humans:
+        pose_2d_mpii, visibility = common.MPIIPart.from_coco(human)
+        pose_2d_mpiis.append([(int(x*standard_w + 0.5), int(y*standard_h + 0.5)) for x, y in pose_2d_mpii])
+        visibilities.append(visibility)
+
+    pose_2d_mpiis = np.array(pose_2d_mpiis)
+    visibilities = np.array(visibilities)
+    transformed_pose2d, weights = poseLifting.transform_joints(pose_2d_mpiis, visibilities)
+    print(pose_2d_mpiis)
+    print(transformed_pose2d)
+    pose_3d = poseLifting.compute_3d(transformed_pose2d, weights)
+    np.set_printoptions(formatter={'float_kind':'{:f}'.format})
+    print(pose_3d)
+
+    for i, single_3d in enumerate(pose_3d):
+        print(pose_3d)
+        plot_pose(single_3d)
+
+    plt.show()
+
+    """ pose_3dxyz = np.array(pose_3d[0]).transpose()
+    for point in pose_3dxyz:
+        print(point)
+    
+    # Show 3D poses
+    for single_3D in pose_3d:
+        # or plot_pose(Prob3dPose.centre_all(single_3D))
+        plot_pose(single_3D)
+
+    plt.show() """
