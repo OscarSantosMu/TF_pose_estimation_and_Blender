@@ -2,7 +2,7 @@ from types import prepare_class
 import numpy as np
 import json
 
-with open("points.json", 'r') as f:
+with open("points_xyz.json", 'r') as f:
     lst = json.load(f)
 
 print(lst)

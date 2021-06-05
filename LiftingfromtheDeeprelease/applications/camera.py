@@ -3,7 +3,7 @@
 """
 Created on 2021-04-16
 
-@author: Uriel Haile Hernández Belmonte
+@author: Oscar Alberto Santos Muñoz & Uriel Haile Hernández Belmonte'
 
 """
 
@@ -136,7 +136,7 @@ while(True):
     cv2.imshow('frame', frame) 
 
     if cv2.waitKey(1) & 0xFF == ord('q'): 
-        json.dump(points_xyz, codecs.open(join(DIR_PATH,"acostado_frames_points_xyz.json"), 'w', encoding='utf-8'), separators=(',', ':'), indent=2)
+        json.dump(points_xyz, codecs.open(join(DIR_PATH,"output.json"), 'w', encoding='utf-8'), separators=(',', ':'), indent=2)
         break
 
 fig2 = plt.figure()
