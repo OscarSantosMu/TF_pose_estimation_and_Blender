@@ -23,7 +23,7 @@ logger.addHandler(ch)
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='tf-pose-estimation run')
-    parser.add_argument('--image', type=str, default='./images/golf.jpg')
+    parser.add_argument('--image', type=str, default='./images/p1.jpg')
     parser.add_argument('--model', type=str, default='cmu',
                         help='cmu / mobilenet_thin / mobilenet_v2_large / mobilenet_v2_small')
     parser.add_argument('--resize', type=str, default='0x0',
@@ -114,10 +114,10 @@ if __name__ == '__main__':
     print(transformed_pose2d)
     pose_3d = poseLifting.compute_3d(transformed_pose2d, weights)
     np.set_printoptions(formatter={'float_kind':'{:f}'.format})
-    print(pose_3d)
+    print(type(pose_3d))
 
     for i, single_3d in enumerate(pose_3d):
-        print(pose_3d)
+        print(single_3d)
         plot_pose(single_3d)
 
     plt.show()
