@@ -89,6 +89,10 @@ This script creates the animation.
 
 5. Clic play on the timeline.
 
+![](static/frames.JPG)
+
+Make sure to modify end value if your recording is too long.
+
 ![](static/original_video.gif)
 
 ![](static/leg.gif)
