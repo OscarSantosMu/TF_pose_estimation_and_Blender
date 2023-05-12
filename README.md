@@ -29,7 +29,7 @@ I set the limit up to 30% of my GPU memory.
 2. Clone the repo and install 3rd-party libraries from requirements.txt.
 
 ```bash
-$ git clone https://github.c/OscarSantos98/TF_pose_estimation_and_Blender
+$ git clone https://github.c/OscarSantosMu/TF_pose_estimation_and_Blender
 $ cd TF_pose_estimation_and_Blender
 $ pip install -r requirements.txt
 ```
@@ -59,13 +59,13 @@ Probably it works in different versions as well, but it was tested using that ve
 
 ## Repositories
 
-To test first repo follow the following [instructions](https://github.com/OscarSantos98/ildoonet-tf-pose-estimation)
+To test first repo follow the following [instructions](https://github.com/OscarSantosMu/ildoonet-tf-pose-estimation)
 
-To test second repo go to the following [folder](https://github.com/OscarSantos98/TF_pose_estimation_and_Blender/LiftingfromtheDeeprelease)
+To test second repo go to the following [folder](https://github.com/OscarSantosMu/TF_pose_estimation_and_Blender/LiftingfromtheDeeprelease)
 
 ## Demo
 
-1. Run [save\_points.py](https://github.com/OscarSantos98/TF_pose_estimation_and_Blender/LiftingfromtheDeeprelease/applications/save_points.py)
+1. Run [save\_points.py](https://github.com/OscarSantosMu/TF_pose_estimation_and_Blender/LiftingfromtheDeeprelease/applications/save_points.py)
 
 You will see that json file is generated with 17 points estimated by Lifting from the Deep model. The idea is to save 17 points of each frame of a video. 
 
@@ -73,17 +73,17 @@ You will see that json file is generated with 17 points estimated by Lifting fro
 
 ![](static/p1_3d.png)
 
-Therefore, same code was implemented in [camera.py](https://github.com/OscarSantos98/TF_pose_estimation_and_Blender/LiftingfromtheDeeprelease/applications/camera.py)
+Therefore, same code was implemented in [camera.py](https://github.com/OscarSantosMu/TF_pose_estimation_and_Blender/LiftingfromtheDeeprelease/applications/camera.py)
 
-2. Run [use\_points.py](https://github.com/OscarSantos98/TF_pose_estimation_and_Blender/LiftingfromtheDeeprelease/applications/use_points.py)
+2. Run [use\_points.py](https://github.com/OscarSantosMu/TF_pose_estimation_and_Blender/LiftingfromtheDeeprelease/applications/use_points.py)
 
 This will access to the 17 points saved from the previous script and print them in the terminal.
 
-3. Run [camera.py](https://github.com/OscarSantos98/TF_pose_estimation_and_Blender/LiftingfromtheDeeprelease/applications/camera.py)
+3. Run [camera.py](https://github.com/OscarSantosMu/TF_pose_estimation_and_Blender/LiftingfromtheDeeprelease/applications/camera.py)
 
 This generates the json file that will be imported in Blender.
 
-4. Open [BodyMaleTemplate_spheres.blend](https://github.com/OscarSantos98/TF_pose_estimation_and_Blender/LiftingfromtheDeeprelease/applications/BodyMaleTemplate_spheres.blend), then run spheres_test.py while selecting all spheres from the canvas.
+4. Open [BodyMaleTemplate_spheres.blend](https://github.com/OscarSantosMu/TF_pose_estimation_and_Blender/LiftingfromtheDeeprelease/applications/BodyMaleTemplate_spheres.blend), then run spheres_test.py while selecting all spheres from the canvas.
 
 This script creates the animation.
 
